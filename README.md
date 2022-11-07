@@ -1,2 +1,1 @@
-# OpenSourceRepoTemplate
-OpenSourceRepoTemplate
+Demo app for running Load Testing using k6

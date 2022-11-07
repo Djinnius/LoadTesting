@@ -1,0 +1,1 @@
+Folder for static resources for the project (e.g. images)

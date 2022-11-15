@@ -9,10 +9,10 @@ namespace LoadTestingApi.Controllers;
 [Route("[controller]/[action]")]
 public class IterationController
 {
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<IterationController> _logger;
     private readonly IAppCache _appCache;
 
-    public IterationController(ILogger<WeatherForecastController> logger, IAppCache appCache)
+    public IterationController(ILogger<IterationController> logger, IAppCache appCache)
     {
         _logger = logger;
         _appCache = appCache;

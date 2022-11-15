@@ -3,12 +3,10 @@ using AutoBogus;
 using Bogus;
 using LazyCache;
 using LoadTestingApi;
-using LoadTestingApi.Dtos;
 using LoadTestingApi.Entities;
 using LoadTestingApi.MappingAbstractions;
 using Mapster;
 using MapsterMapper;
-using ProtoBuf.Meta;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 // ===========================
 builder.Host.UseSerilog((ctx, lc) =>
 {
-    lc.WriteTo.Console();
+    lc.WriteTo.Console(restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning);
 });
 
 

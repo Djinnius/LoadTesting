@@ -11,10 +11,10 @@ namespace LoadTestingApi.Controllers;
 [Route("[controller]/[action]")]
 public class SerialisationController : ControllerBase
 {
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<SerialisationController> _logger;
     private readonly IAppCache _appCache;
 
-    public SerialisationController(ILogger<WeatherForecastController> logger, IAppCache appCache)
+    public SerialisationController(ILogger<SerialisationController> logger, IAppCache appCache)
     {
         _logger = logger;
         _appCache = appCache;

@@ -11,12 +11,12 @@ namespace LoadTestingApi.Controllers;
 [Route("[controller]/[action]")]
 public class MappingController
 {
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<MappingController> _logger;
     private readonly IAppCache _appCache;
     private readonly IMapper _mapper;
     private readonly IAddressBookMapper _addressBookMapper;
 
-    public MappingController(ILogger<WeatherForecastController> logger, IAppCache appCache, IMapper mapper, IAddressBookMapper addressBookMapper)
+    public MappingController(ILogger<MappingController> logger, IAppCache appCache, IMapper mapper, IAddressBookMapper addressBookMapper)
     {
         _logger = logger;
         _appCache = appCache;

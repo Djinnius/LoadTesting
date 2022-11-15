@@ -1,8 +1,5 @@
 ﻿using LazyCache;
-using LoadTestingApi.Dtos;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using ProtoBuf;
 
 namespace LoadTestingApi.Controllers;
 [ApiController]
@@ -37,7 +34,7 @@ public class WeatherForecastController : ControllerBase
 
     //public IEnumerable<WeatherForecast> GetSlow(int count)
     //{
-        
+
     //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
     //    {
     //        Date = DateTime.Now.AddDays(index),

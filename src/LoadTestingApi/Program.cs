@@ -1,33 +1,45 @@
-﻿using AutoBogus;
+﻿using System.Reflection;
+using AutoBogus;
 using Bogus;
 using LazyCache;
 using LoadTestingApi;
+using LoadTestingApi.Dtos;
 using LoadTestingApi.Entities;
+using LoadTestingApi.MappingAbstractions;
+using Mapster;
+using MapsterMapper;
+using ProtoBuf.Meta;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog((ctx, lc) => lc
-    .WriteTo.Console());
+// 1. Configure Logging
+// ===========================
+builder.Host.UseSerilog((ctx, lc) =>
+{
+    lc.WriteTo.Console();
+});
 
-// Add services to the container.
 
+// 2. Add services to the container.
+// ===========================
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLazyCache();
 
+var config = TypeAdapterConfig.GlobalSettings;
+config.Scan(Assembly.GetExecutingAssembly());
+var mapperConfig = new Mapper(config);
+builder.Services.AddSingleton<IMapper>(mapperConfig);
+builder.Services.AddSingleton<IAddressBookMapper, AddressBookMapper>();
+
+// 3. Build app
+// ===========================
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
-// Grab the cache and populate
+// 4. Populate cache
 // ===========================
 
 var size = 1000;
@@ -37,7 +49,7 @@ var cache = app.Services.GetService<IAppCache>();
 Randomizer.Seed = new Random(123);
 cache.Add(CacheKeys.CachedStrings, AutoFaker.Generate<string>(size));
 
-//   Populate Address book
+//   Populate Address book Entity
 Randomizer.Seed = new Random(123);
 
 var phoneFaker = new AutoFaker<PhoneEntity>()
@@ -50,10 +62,31 @@ var personFaker = new AutoFaker<PersonEntity>()
     .RuleFor(x => x.Age, f => f.Random.Int(10, 90))
     .RuleFor(x => x.Phones, f => phoneFaker.Generate(3));
 
-cache.Add(CacheKeys.CachedAddressBook, new AddressBookEntity { Persons = personFaker.Generate(size) });
+var addressBookEntity = new AddressBookEntity
+{
+    Persons = personFaker.Generate(size)
+};
+
+cache.Add(CacheKeys.CachedAddressBookEntity, addressBookEntity);
+
+//    Populate Address book DTO
+var mapper = new AddressBookMapper();
+var addressBookDto = mapper.Map(addressBookEntity);
+cache.Add(CacheKeys.CachedAddressBookDto, addressBookDto);
+
 
 // =========================== End Populate Cache
 
+
+
+
+// 5. Configure the HTTP request pipeline.
+// ===========================
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseAuthorization();
 app.MapControllers();

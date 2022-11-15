@@ -1,9 +1,8 @@
 ﻿using LoadTestingApi.Shared.Enums;
-using ProtoBuf;
 
 namespace LoadTestingApi.Entities;
 
-internal sealed class PhoneEntity
+public sealed class PhoneEntity
 {
     public string Number { get; set; } = string.Empty;
 

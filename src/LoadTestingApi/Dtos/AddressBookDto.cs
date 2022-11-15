@@ -4,7 +4,7 @@ using ProtoBuf;
 namespace LoadTestingApi.Dtos;
 
 [ProtoContract]
-internal sealed class AddressBookDto
+public sealed class AddressBookDto
 {
     [ProtoMember(1)]
     public List<PersonDto> Persons { get; set; } = new List<PersonDto>();

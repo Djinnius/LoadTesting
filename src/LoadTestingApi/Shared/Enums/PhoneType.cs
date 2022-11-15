@@ -1,5 +1,5 @@
 ﻿namespace LoadTestingApi.Shared.Enums;
-internal enum PhoneType
+public enum PhoneType
 {
     Mobile,
     Home,

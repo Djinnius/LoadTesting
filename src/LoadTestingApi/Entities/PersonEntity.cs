@@ -1,9 +1,8 @@
 ﻿using System.Text;
-using ProtoBuf;
 
 namespace LoadTestingApi.Entities;
 
-internal sealed class PersonEntity
+public sealed class PersonEntity
 {
     public int ID { get; set; }
 

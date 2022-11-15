@@ -4,7 +4,7 @@ using ProtoBuf;
 namespace LoadTestingApi.Dtos;
 
 [ProtoContract]
-internal sealed class PersonDto
+public sealed class PersonDto
 {
     [ProtoMember(1)]
     public int ID { get; set; }

@@ -1,9 +1,8 @@
 ﻿using System.Text;
-using ProtoBuf;
 
 namespace LoadTestingApi.Entities;
 
-internal sealed class AddressBookEntity
+public sealed class AddressBookEntity
 {
     public List<PersonEntity> Persons { get; set; } = new List<PersonEntity>();
 

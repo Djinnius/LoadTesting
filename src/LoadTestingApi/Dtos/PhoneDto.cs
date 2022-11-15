@@ -4,7 +4,7 @@ using ProtoBuf;
 namespace LoadTestingApi.Dtos;
 
 [ProtoContract]
-internal sealed class PhoneDto
+public sealed class PhoneDto
 {
     [ProtoMember(1)]
     public string Number { get; set; } = string.Empty;

@@ -3,10 +3,12 @@ using AutoBogus;
 using Bogus;
 using LazyCache;
 using LoadTestingApi;
+using LoadTestingApi.DependencyInjection;
 using LoadTestingApi.Entities;
 using LoadTestingApi.MappingAbstractions;
 using Mapster;
 using MapsterMapper;
+using ProtoBuf.Meta;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,11 +28,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLazyCache();
 
-var config = TypeAdapterConfig.GlobalSettings;
-config.Scan(Assembly.GetExecutingAssembly());
-var mapperConfig = new Mapper(config);
-builder.Services.AddSingleton<IMapper>(mapperConfig);
-builder.Services.AddSingleton<IAddressBookMapper, AddressBookMapper>();
+builder.Services.AddSingleton(new TypeAdapterConfig());
+builder.Services.AddScoped<IMapper, ServiceMapper>();
+
+builder.Services.Scan(scan =>
+{
+    scan.FromAssemblyOf<ISingletonService>().AddClasses(classes => classes.AssignableTo<ITransientService>()).AsImplementedInterfaces().WithTransientLifetime();
+    scan.FromAssemblyOf<ISingletonService>().AddClasses(classes => classes.AssignableTo<IScopedService>()).AsImplementedInterfaces().WithScopedLifetime();
+    scan.FromAssemblyOf<ISingletonService>().AddClasses(classes => classes.AssignableTo<ISingletonService>()).AsImplementedInterfaces().WithSingletonLifetime();
+});
+
+//builder.Services.AddSingleton<IAddressBookMapper, AddressBookMapper>();
 
 // 3. Build app
 // ===========================

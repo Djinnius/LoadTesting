@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using AutoBogus;
+﻿using AutoBogus;
 using Bogus;
 using LazyCache;
 using LoadTestingApi;
@@ -8,7 +7,6 @@ using LoadTestingApi.Entities;
 using LoadTestingApi.MappingAbstractions;
 using Mapster;
 using MapsterMapper;
-using ProtoBuf.Meta;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,9 +25,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLazyCache();
-
 builder.Services.AddSingleton(new TypeAdapterConfig());
 builder.Services.AddScoped<IMapper, ServiceMapper>();
+// Nominally would add serialisers here as well.
 
 builder.Services.Scan(scan =>
 {
@@ -37,8 +35,6 @@ builder.Services.Scan(scan =>
     scan.FromAssemblyOf<ISingletonService>().AddClasses(classes => classes.AssignableTo<IScopedService>()).AsImplementedInterfaces().WithScopedLifetime();
     scan.FromAssemblyOf<ISingletonService>().AddClasses(classes => classes.AssignableTo<ISingletonService>()).AsImplementedInterfaces().WithSingletonLifetime();
 });
-
-//builder.Services.AddSingleton<IAddressBookMapper, AddressBookMapper>();
 
 // 3. Build app
 // ===========================

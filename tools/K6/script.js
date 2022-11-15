@@ -60,11 +60,25 @@ export default function() {
   //   address: "http://localhost:5095/Mapping/MapManually"
   // });
 
+  // postman[Request]({
+  //   name: "String Builder",
+  //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
+  //   method: "GET",
+  //   address: "http://localhost:5095/Mapping/MapWithMapsterCodeGeneration"
+  // });
+
+  // postman[Request]({
+  //   name: "String Builder",
+  //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
+  //   method: "GET",
+  //   address: "http://localhost:5095/FullStack/Unoptimised"
+  // });
+
   postman[Request]({
     name: "String Builder",
     id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
     method: "GET",
-    address: "http://localhost:5095/Mapping/MapWithMapsterCodeGeneration"
+    address: "http://localhost:5095/FullStack/Optimised"
   });
 }
 

@@ -49,6 +49,7 @@ public class FullStackController : ControllerBase
 
         dto.PersonNames = personString;
 
+        //_logger.LogWarning("Successfully ran unoptimised.");
         return json;
     }
 
@@ -61,7 +62,7 @@ public class FullStackController : ControllerBase
     /// </summary>
     /// <returns> A streamed address book </returns>
     [HttpGet]
-    public string Optimised()
+    public Stream Optimised()
     {
         var addressBook = _appCache.Get<AddressBookEntity>(CacheKeys.CachedAddressBookEntity);
         var dto = _addressBookMapper.Map(addressBook);
@@ -76,9 +77,10 @@ public class FullStackController : ControllerBase
 
         MemoryStream stream = new MemoryStream();
         Serializer.Serialize(stream, dto);
-        string stringBase64 = Convert.ToBase64String(stream.GetBuffer(), 0, (int)stream.Length);
 
-        return stringBase64;
+        //string stringBase64 = Convert.ToBase64String(stream.GetBuffer(), 0, (int)stream.Length);
+        //_logger.LogWarning("Successfully ran optimised.");
+        return stream;
     }
 
 

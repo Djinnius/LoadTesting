@@ -33,6 +33,7 @@ public class MappingController
     {
         var addressBook = _appCache.Get<AddressBookEntity>(CacheKeys.CachedAddressBookEntity);
         var result = ManuallyMapToAddressBookDto(addressBook);
+        //_logger.LogWarning("Successfully mapped manually.");
         return result.Persons.First().Name;
     }
 
@@ -45,6 +46,7 @@ public class MappingController
     {
         var addressBook = _appCache.Get<AddressBookEntity>(CacheKeys.CachedAddressBookEntity);
         var result = _addressBookMapper.Map(addressBook);
+        //_logger.LogWarning("Successfully mapped with mapster code gen.");
         return result.Persons.First().Name;
     }
 

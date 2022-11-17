@@ -47,10 +47,6 @@ var app = builder.Build();
 var size = 1000;
 var cache = app.Services.GetService<IAppCache>();
 
-//   Populate strings
-Randomizer.Seed = new Random(123);
-cache.Add(CacheKeys.CachedStrings, AutoFaker.Generate<string>(size));
-
 //   Populate Address book Entity
 Randomizer.Seed = new Random(123);
 
@@ -69,12 +65,12 @@ var addressBookEntity = new AddressBookEntity
     Persons = personFaker.Generate(size)
 };
 
-cache.Add(CacheKeys.CachedAddressBookEntity, addressBookEntity);
+cache.Add(CacheKeys.CachedAddressBookEntity, addressBookEntity, DateTimeOffset.UtcNow.AddHours(2));
 
 //    Populate Address book DTO
 var mapper = new AddressBookMapper();
 var addressBookDto = mapper.Map(addressBookEntity);
-cache.Add(CacheKeys.CachedAddressBookDto, addressBookDto);
+cache.Add(CacheKeys.CachedAddressBookDto, addressBookDto, DateTimeOffset.UtcNow.AddHours(2));
 
 
 // =========================== End Populate Cache

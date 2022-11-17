@@ -26,56 +26,56 @@ export default function() {
   // });
 
   // postman[Request]({
-  //   name: "String Builder",
+  //   name: "Serialise with Newtonsoft",
   //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
   //   method: "GET",
   //   address: "http://localhost:5095/Serialisation/SerialiseWithNewtonsoft"
   // });
 
   // postman[Request]({
-  //   name: "String Builder",
+  //   name: "Serialise with Protobuf",
   //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
   //   method: "GET",
   //   address: "http://localhost:5095/Serialisation/SerialiseWithProtobuf"
   // });
 
   // postman[Request]({
-  //   name: "String Builder",
+  //   name: "Iterate With Foreach",
   //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
   //   method: "GET",
   //   address: "http://localhost:5095/Iteration/IterateWithForEach"
   // });
 
   // postman[Request]({
-  //   name: "String Builder",
+  //   name: "Iterate with Span",
   //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
   //   method: "GET",
   //   address: "http://localhost:5095/Iteration/IterateWithSpan"
   // });
 
   // postman[Request]({
-  //   name: "String Builder",
+  //   name: "Manual Map",
   //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
   //   method: "GET",
   //   address: "http://localhost:5095/Mapping/MapManually"
   // });
 
   // postman[Request]({
-  //   name: "String Builder",
+  //   name: "Mapster Code Gen",
   //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
   //   method: "GET",
   //   address: "http://localhost:5095/Mapping/MapWithMapsterCodeGeneration"
   // });
 
   // postman[Request]({
-  //   name: "String Builder",
+  //   name: "Full Stack Unoptimised",
   //   id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
   //   method: "GET",
   //   address: "http://localhost:5095/FullStack/Unoptimised"
   // });
 
   postman[Request]({
-    name: "String Builder",
+    name: "Full Stack Optimised",
     id: "c23df1e6-d096-4b65-b5b7-3d7a2f247ba9",
     method: "GET",
     address: "http://localhost:5095/FullStack/Optimised"

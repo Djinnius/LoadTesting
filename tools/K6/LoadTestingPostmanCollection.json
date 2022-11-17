@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "47a32149-946c-4e0b-b8d1-7a0a8a6c82dd",
-		"name": "Load Testing",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"_postman_id": "4a5cd7d7-e2fb-4c68-8485-083aafd2fbcb",
+		"name": "LoadTesting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17861171"
 	},
 	"item": [
 		{
@@ -20,6 +21,78 @@
 				"method": "GET",
 				"header": [],
 				"url": "http://localhost:5095/String/ConcatenateByStringBuilder"
+			},
+			"response": []
+		},
+		{
+			"name": "Serialisation Newtonsoft",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/Serialisation/SerialiseWithNewtonsoft"
+			},
+			"response": []
+		},
+		{
+			"name": "Serialisation Protobuf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/Serialisation/SerialiseWithProtobuf"
+			},
+			"response": []
+		},
+		{
+			"name": "Mapping Manually",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/Mapping/MapManually"
+			},
+			"response": []
+		},
+		{
+			"name": "Mapping Mapster Code Gen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/Mapping/MapWithMapsterCodeGeneration"
+			},
+			"response": []
+		},
+		{
+			"name": "Iterate Foreach",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/Iteration/IterateWithForEach"
+			},
+			"response": []
+		},
+		{
+			"name": "Iterate Foreach Span",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/Iteration/IterateWithSpan"
+			},
+			"response": []
+		},
+		{
+			"name": "Full Stack Unoptimised",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/FullStack/Unoptimised"
+			},
+			"response": []
+		},
+		{
+			"name": "Full Stack Optimised",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5095/FullStack/Optimised"
 			},
 			"response": []
 		}

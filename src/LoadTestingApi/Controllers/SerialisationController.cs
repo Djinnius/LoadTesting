@@ -30,7 +30,7 @@ public class SerialisationController : ControllerBase
         var addressBook = _appCache.Get<AddressBookDto>(CacheKeys.CachedAddressBookDto);
         var result = JsonConvert.SerializeObject(addressBook);
 
-        _logger.LogInformation("Successfully serialised with Newtonsoft.");
+        //_logger.LogWarning("Successfully serialised with Newtonsoft.");
         return result;
     }
 
@@ -44,6 +44,8 @@ public class SerialisationController : ControllerBase
         var addressBook = _appCache.Get<AddressBookDto>(CacheKeys.CachedAddressBookDto);
         MemoryStream stream = new MemoryStream();
         Serializer.Serialize(stream, addressBook);
+
+        //_logger.LogWarning("Successfully serialised with protobuf.");
         return stream;
     }
 }

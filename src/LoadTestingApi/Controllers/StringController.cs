@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using LazyCache;
+using LoadTestingApi.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LoadTestingApi.Controllers;
@@ -24,14 +25,13 @@ public class StringController : ControllerBase
     [HttpGet]
     public string ConcatenateByStringLiteral()
     {
-        // Get the cached strings configured during app startup (program.cs)
-        var strings = _appCache.Get<List<string>>(CacheKeys.CachedStrings);
+        var addressBook = _appCache.Get<AddressBookDto>(CacheKeys.CachedAddressBookDto);
         var stringResult = string.Empty;
 
-        foreach (var str in strings)
-            stringResult += str;
+        foreach (var person in addressBook.Persons)
+            stringResult += person.Name;
 
-        _logger.LogInformation("Successfully generated string from String Literals");
+        //_logger.LogWarning("Successfully generated string from String Literals.");
         return stringResult;
     }
 
@@ -42,14 +42,13 @@ public class StringController : ControllerBase
     [HttpGet]
     public string ConcatenateByStringBuilder()
     {
-        // Get the cached strings configured during app startup (program.cs)
-        var strings = _appCache.Get<List<string>>(CacheKeys.CachedStrings);
+        var addressBook = _appCache.Get<AddressBookDto>(CacheKeys.CachedAddressBookDto);
         var sb = new StringBuilder();
 
-        foreach (var str in strings)
-            sb.Append(str);
+        foreach (var person in addressBook.Persons)
+            sb.Append(person.Name);
 
-        _logger.LogInformation("Successfully generated string from String Builder");
+        //_logger.LogWarning("Successfully generated string from String Builder.");
         return sb.ToString();
     }
 }

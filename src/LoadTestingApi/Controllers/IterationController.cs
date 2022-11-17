@@ -32,7 +32,7 @@ public class IterationController
         foreach (var str in strings)
             sb.Append(str);
 
-        _logger.LogInformation("Successfully generated string from String Builder");
+        //_logger.LogWarning("Successfully iterated with foreach.");
         return sb.ToString();
     }
 
@@ -51,7 +51,7 @@ public class IterationController
         foreach (var str in spanOfStrings)
             sb.Append(str);
 
-        _logger.LogInformation("Successfully generated string from String Builder");
+        //_logger.LogWarning("Successfully iterated with foreach span.");
         return sb.ToString();
     }
 }
